@@ -7,17 +7,17 @@ import { User } from "../../modals/User";
   templateUrl: "./user.component.html",
   styleUrls: ["./user.component.css"]
 })
-
 export class UserComponent {
-  user : User;
+  user: User;
 
   constructor() {
     this.user = {
-      id : 1,
-      username : "mathilde",
-      phone : 992312312,
-      role : "CEO",
-      name : "Mathilde Saylors"
-    }
+      id: 1,
+      username: "mathilde",
+      phone: 992312312,
+      role: "CEO",
+      name: "Mathilde Saylors",
+      editable: false
+    };
   }
 }
