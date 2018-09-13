@@ -1,0 +1,86 @@
+<div class='card card-body mb-3 compact'>
+  <h2>Add User</h2>
+  <form (submit)="onSubmit($event)">
+    <div>
+      <label for="name">Name</label>
+      <input [(ngModel)]="user.name" type="text" name='name' id="name" placeholder='Name' class="form-control">
+    </div>
+    <div>
+      <label for="username">Username</label>
+      <input [(ngModel)]="user.username" type="text" name='username' id="username" placeholder='Username' class="form-control">
+    </div>
+    <div>
+      <label for="phone">Phone</label>
+      <input [(ngModel)]="user.phone" type="number" name='phone' id="phone" placeholder='Phone' class="form-control">
+    </div>
+    <div>
+      <label for="id">ID</label>
+      <input [(ngModel)]="user.id" type="number" name='id' id="id" placeholder='Id' class="form-control">
+    </div>
+    <div>
+      <label for="role">Role</label>
+      <input [(ngModel)]="user.role" type="text" name='role' id="role" placeholder='Role' class="form-control">
+    </div>
+
+    <button (click)="addUser()" class='btn btn-dark mb-3"'>Add User</button>
+  </form>
+</div>
+
+
+<h2>Users:</h2>
+
+<ul>
+  <li class="card card-body mb-2" *ngFor="let user of users">
+
+    <div class="row">
+      <div class="col-sm-4">
+        <img *ngIf='user.image' [src]="user.image" alt="" class='img-fluid'>
+      </div>
+      <div class="col-sm-8">
+        <button (click)="deleteUser(user)" class='float-right'>
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+        <button (click)="setEditable(user)" class='float-right'>
+          <i class="fa fa-edit" aria-hidden="true"></i>
+        </button>
+        <h3>{{ user.name}}</h3>
+        <div *ngIf="!user.editable">
+          <ul class="list-group">
+            <li class="list-group-item">Id: {{ user.id }}</li>
+            <li class="list-group-item">Phone: {{ user.phone }}</li>
+            <li class="list-group-item">Role: {{ user.role }}</li>
+            <li class="list-group-item">Username: {{ user.username }}</li>
+          </ul>
+        </div>
+
+        <div *ngIf='user.editable'>
+          <form (submit)="onSubmit($event)">
+            <div>
+              <label for="name">Name</label>
+              <input [(ngModel)]="user.name" type="text" name='name' placeholder='Name' class="form-control">
+            </div>
+            <div>
+              <label for="username">Username</label>
+              <input [(ngModel)]="user.username" type="text" name='username' placeholder='Username' class="form-control">
+            </div>
+            <div>
+              <label for="phone">Phone</label>
+              <input [(ngModel)]="user.phone" type="number" name='phone' placeholder='Phone' class="form-control">
+            </div>
+            <div>
+              <label for="id">ID</label>
+              <input [(ngModel)]="user.id" type="number" name='id' placeholder='Id' class="form-control">
+            </div>
+            <div>
+              <label for="role">Role</label>
+              <input [(ngModel)]="user.role" type="text" name='role' placeholder='Role' class="form-control">
+            </div>
+
+            <button (click)="editUser(user)" class='btn btn-dark mb-3"'>Submit Changes</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </li>
+</ul>
